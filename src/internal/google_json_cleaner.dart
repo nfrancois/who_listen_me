@@ -16,14 +16,13 @@ class _GoogleJsonCleaner {
     var lastChar = '';
     var buffer = new StringBuffer();
     // Don't need  first chars )]}'\n\n
-    var workingTest = (text.startsWith(STARTING_BLOCK)) ? text.substring(STARTING_BLOCK.length) : text;
-    workingTest.splitChars().forEach((currentChar) {
-      if(currentChar != NEW_LINE){// Skip new line
-        // Detect string value
-        // TODO escape
-        //if(currentChar == QUOTE){
-        //  isInStringValue = !isInStringValue;
-        //}
+    var workingText = (text.startsWith(STARTING_BLOCK)) ? text.substring(STARTING_BLOCK.length) : text;
+    workingText.splitChars().forEach((currentChar) {
+      // Detect value in quote
+      if(currentChar == QUOTE){
+        isInStringValue = !isInStringValue;
+      }
+      if(!isInStringValue && currentChar != NEW_LINE && currentChar != SPACE){// Skip new line
         // Add empty value
         if(_betweenTwoComma(lastChar, currentChar) || _betweenCommaAndBrace(lastChar, currentChar) || _betweenBraceAndComma(lastChar, currentChar)){
           buffer.add(NULL_VALUE);
@@ -31,6 +30,9 @@ class _GoogleJsonCleaner {
         
         buffer.add(currentChar);
         
+        lastChar = currentChar;
+      } else if(isInStringValue) {
+        buffer.add(currentChar);
         lastChar = currentChar;
       }
     });
