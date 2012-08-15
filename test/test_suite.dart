@@ -10,19 +10,23 @@
 #source("../src/api/circles_api.dart");
 #source("../src/internal/google_json_cleaner.dart");
 
+/**
+ * Call all tests.
+ */
 class TestSuite {
   
-  final Map<String, _Testable> _tests;  
+  /**
+   * All test
+   */
+  final List<_Testable> _tests;  
   
-  TestSuite() : _tests = {
-        'GoogleJsonClean' : new GoogleJsonCleanerTest()         
-  };
+  TestSuite() : _tests = [ new GoogleJsonCleanerTest()  ];
   
+  /**
+   * Run all tests
+   */
   run(){
-    _tests.forEach((_name, _test){
-      print('running $_name ...');
-      group(_name, _test.runTest);
-    });
+    _tests.forEach((_test) => group('${_test.description()} - ', _test.runTest)) ;
   }
   
 }
@@ -31,10 +35,14 @@ main() {
   new TestSuite().run();
 }
 
-
+/**
+ * Calling test interface.
+ */
 interface _Testable {
   
   runTest();
+  
+  String description();
   
 }
 
