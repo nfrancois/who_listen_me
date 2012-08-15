@@ -5,10 +5,10 @@
 #import('dart:io');
 
 // Test Classes 
-#source("google_json_clean_test.dart");
+#source("internal/google_json_clean_test.dart");
 // Tested classes
-#source("../src/circles_api.dart");
-#source("../src/google_json_cleaner.dart");
+#source("../src/api/circles_api.dart");
+#source("../src/internal/google_json_cleaner.dart");
 
 class TestSuite {
   

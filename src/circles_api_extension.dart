@@ -1,7 +1,7 @@
 #library("circles_api_extension");
 
-#source("circles_api.dart");
-#source("google_json_cleaner.dart");
+#source("api/circles_api.dart");
+#source("internal/google_json_cleaner.dart");
 
 class CirclesApiExtension {
   
