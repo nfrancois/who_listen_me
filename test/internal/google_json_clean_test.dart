@@ -22,12 +22,23 @@ class GoogleJsonCleanerTest {
       expect(result, equals(expected));
   }
   
+  _shouldANullBeetweenComma(){
+    // Given
+    String incoming = ',,,';
+    
+    // When
+    String result = _cleaner.clean(incoming);
+    // Then
+    expect(result, equals(',null,null,'));    
+  }
+  
   
   
   runTest(){
     group('', () {
       setUp(() => _cleaner = new _GoogleJsonCleaner());
-      test('a complete response test', () => _completeResponse());
+      test('complete response test', () => _completeResponse());
+      test('null value must be added between comma', () => _shouldANullBeetweenComma());
     });
   }
   

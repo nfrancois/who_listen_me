@@ -1,12 +1,15 @@
 
 class _GoogleJsonCleaner {
   
+  static final String STARTING_BLOCK = ")]}'\n\n";
+  
   String clean(String text){
     var isInStringValue = false;
-    var lastChar = '';
+    var lastChar = null;
     var buffer = new StringBuffer();
-    // Don't need  first chars )]}'\n\n[
-    List<String> textChars = text.substring(6).splitChars();
+    // Don't need  first chars )]}'\n\n
+    var workingTest = (text.startsWith(STARTING_BLOCK)) ? text.substring(6) : text;
+    List<String> textChars = workingTest.splitChars();
     for(String currentChar in textChars){
       // Detect string value
       // TODO escape
