@@ -2,32 +2,32 @@
 class _GoogleJsonCleaner {
   
   static final String STARTING_BLOCK = ")]}'\n\n";
-  static final String NULL_VALUE = 'null';
-  static final String COMMA = ',';
-  static final String OPEN_BRACE = '[';
-  static final String CLOSE_BRACE = ']';
-  static final String NEW_LINE = '\n';
-  static final String SPACE = ' ';
-  static final String ESCAPE = '\\';
-  static final String QUOTE = '"';
+  static final List<int> NULL_VALUE = const [110, 117, 108, 108];
+  static final int COMMA = 44;
+  static final int OPEN_BRACE = 91;
+  static final int CLOSE_BRACE = 93;
+  static final int NEW_LINE = 10;
+  static final int SPACE = 32;
+  static final int ESCAPE = 92;
+  static final int QUOTE = 34;
   
   String clean(String text){
     var isInStringValue = false;
-    var lastChar = '';
-    var buffer = new StringBuffer();
+    var lastChar = 0;
+    var buffer = new List<int>();
     // Don't need  first chars )]}'\n\n
     var workingText = (text.startsWith(STARTING_BLOCK)) ? text.substring(STARTING_BLOCK.length) : text;
-    workingText.splitChars().forEach((currentChar) {
+    // The chars must me read as raw char.
+    workingText.charCodes().forEach((currentChar) {
       // Detect value in quote
       if(currentChar == QUOTE){
         isInStringValue = !isInStringValue;
       }
-      if(!isInStringValue && currentChar != NEW_LINE && currentChar != SPACE){// Skip new line
+      if(!isInStringValue && currentChar != NEW_LINE && currentChar != SPACE){// Skip new line and space
         // Add empty value
         if(_betweenTwoComma(lastChar, currentChar) || _betweenCommaAndBrace(lastChar, currentChar) || _betweenBraceAndComma(lastChar, currentChar)){
-          buffer.add(NULL_VALUE);
+          buffer.addAll(NULL_VALUE);
         }
-        
         buffer.add(currentChar);
         
         lastChar = currentChar;
@@ -36,19 +36,19 @@ class _GoogleJsonCleaner {
         lastChar = currentChar;
       }
     });
-    return buffer.toString();
+    return new String.fromCharCodes(buffer);
   }
   
-  bool _betweenTwoComma(String firstChar, String secondChar){
-    return firstChar == COMMA && secondChar == COMMA;   
+  bool _betweenTwoComma(first, second){
+    return first == COMMA && second == COMMA;   
   }
   
-  bool _betweenCommaAndBrace(String firstChar, String secondChar){
-    return firstChar == COMMA && secondChar == CLOSE_BRACE;    
+  bool _betweenCommaAndBrace(int first, second){
+    return first == COMMA && second == CLOSE_BRACE;    
   }
   
-  bool _betweenBraceAndComma(String firstChar, String secondChar){
-    return firstChar == OPEN_BRACE && secondChar == COMMA;
+  bool _betweenBraceAndComma(first, second){
+    return first == OPEN_BRACE && second == COMMA;
   }  
   
 }
