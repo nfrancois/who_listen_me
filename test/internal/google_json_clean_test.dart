@@ -2,89 +2,90 @@
  * Test for GoogleJsonCleaner. 
  */
 class GoogleJsonCleanerTest {
-
+  
+  
   _GoogleJsonCleaner _cleaner;
   
   _shouldANullBeetweenComma(){
     // Given
-    String incoming = ',,,';
+    var incoming = ',,,'.charCodes();
     // When
-    String result = _cleaner.clean(incoming);
+    var result = _cleaner.clean(incoming);
     // Then
     expect(result, equals(',null,null,'));    
   }
   
   _shouldAddNullValueBetweenBraceAnComma(){
     // Given
-    String incoming = '[,';
+    var incoming = '[,'.charCodes();;
     // When
-    String result = _cleaner.clean(incoming);
+    var result = _cleaner.clean(incoming);
     // Then
     expect(result, equals('[null,'));       
   }
   
   _shouldAddNullValueBetweenCommaAndBrace(){
     // Given
-    String incoming = ',]';
+    var incoming = ',]'.charCodes();;
     // When
-    String result = _cleaner.clean(incoming);
+    var result = _cleaner.clean(incoming);
     // Then
     expect(result, equals(',null]'));       
   }  
   
   _ignoreNewLine(){
     // Given
-    String incoming = 'something\n';
+    var incoming = 'something\n'.charCodes();;
     // When
-    String result = _cleaner.clean(incoming);
+    var result = _cleaner.clean(incoming);
     // Then
     expect(result, equals('something'));    
   }
   
   _ignoreSpace(){
     // Given
-    String incoming = ',something ,';
+    var incoming = ',something ,'.charCodes();;
     // When
-    String result = _cleaner.clean(incoming);
+    var result = _cleaner.clean(incoming);
     // Then
     expect(result, equals(',something,'));    
   }
   
   _notIgnoreSpaceInQuote(){
     // Given
-    String incoming = '"something "';
+    var incoming = '"something "'.charCodes();;
     // When
-    String result = _cleaner.clean(incoming);
+    var result = _cleaner.clean(incoming);
     // Then
     expect(result, equals('"something "'));    
   }
   
   _notIgnoreNewLineInQuote(){
     // Given
-    String incoming = '"something\n"';
+    var incoming = '"something\n"'.charCodes();;
     // When
-    String result = _cleaner.clean(incoming);
+    var result = _cleaner.clean(incoming);
     // Then
     expect(result, equals('"something\n"'));    
   }  
   
   _notCloseQuoteCharAfterEscape(){
     // Given
-    String incoming = '"something';
+    var incoming = @'"\"something in quotes in the quotes\""'.charCodes();
     // When
-    String result = _cleaner.clean(incoming);
+    var result = _cleaner.clean(incoming);
     // Then
-    expect(result, equals(incoming));
+    expect(result, equals(@'"\"something in quotes in the quotes\""'));
   }  
  
   _completeResponse(){
       // Given
-      String incoming = (new File("test/resources/incoming.txt")).readAsTextSync();
-      String expected = (new File("test/resources/incoming_clean.txt")).readAsTextSync();  
+      var incomingStream = (new File("test/resources/incoming.txt")).readAsBytesSync();
+      var incoming = incomingStream.getRange(6, incomingStream.length-6);
       // When
-      String result = _cleaner.clean(incoming);
+      var result = _cleaner.clean(incoming);
       // Then
-      //expect(result, isNotNull(), false);
+      var expected = (new File("test/resources/incoming_clean.txt")).readAsTextSync();  
       expect(result, equals(expected));
   }  
   
@@ -98,7 +99,7 @@ class GoogleJsonCleanerTest {
       test('ignore space', () => _ignoreNewLine());
       test('not ignore space in quote', () => _notIgnoreSpaceInQuote());
       test('not ignore new line in quote', () => _notIgnoreNewLineInQuote());
-      //test('don''t close quote after escape', () => _notCloseQuoteCharAfterEscape());
+      test('don''t close quote after escape', () => _notCloseQuoteCharAfterEscape());
       test('complete response test', () => _completeResponse());
     });
   }

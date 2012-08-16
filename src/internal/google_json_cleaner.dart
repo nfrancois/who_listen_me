@@ -1,7 +1,6 @@
 
 class _GoogleJsonCleaner {
   
-  static final String STARTING_BLOCK = ")]}'\n\n";
   static final List<int> NULL_VALUE = const [110, 117, 108, 108];
   static final int COMMA = 44;
   static final int OPEN_BRACE = 91;
@@ -11,16 +10,18 @@ class _GoogleJsonCleaner {
   static final int ESCAPE = 92;
   static final int QUOTE = 34;
   
-  String clean(String text){
+  String clean(List<int> bytes){
     var isInStringValue = false;
+    var isInEscape = false;
     var lastChar = 0;
     var buffer = new List<int>();
     // Don't need  first chars )]}'\n\n
-    var workingText = (text.startsWith(STARTING_BLOCK)) ? text.substring(STARTING_BLOCK.length) : text;
-    // The chars must me read as raw char.
-    workingText.charCodes().forEach((currentChar) {
+    bytes.forEach((currentChar) {
       // Detect value in quote
-      if(currentChar == QUOTE){
+      if(currentChar == ESCAPE){
+        isInEscape = !isInEscape;
+      }
+      if(!isInEscape && currentChar == QUOTE){
         isInStringValue = !isInStringValue;
       }
       if(!isInStringValue && currentChar != NEW_LINE && currentChar != SPACE){// Skip new line and space
