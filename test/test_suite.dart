@@ -6,9 +6,11 @@
 
 // Test Classes 
 #source("internal/google_json_clean_test.dart");
+#source("internal/person_mapper_test.dart");
 // Tested classes
 #source("../src/api/circles_api.dart");
 #source("../src/internal/google_json_cleaner.dart");
+#source("../src/internal/person_mapper.dart");
 
 /**
  * Call all tests.
@@ -20,7 +22,7 @@ class TestSuite {
    */
   final List<_Testable> _tests;  
   
-  TestSuite() : _tests = [ new GoogleJsonCleanerTest()  ];
+  TestSuite() : _tests = [ new GoogleJsonCleanerTest(), new PersonMapperTest()  ];
   
   /**
    * Run all tests
