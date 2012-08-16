@@ -2,7 +2,7 @@
  * Objet for Person.
  */ 
 class Person {
-
+  
   //String _googleId;
   String _googlePlusId;
   String _name;
@@ -34,5 +34,11 @@ class Person {
     if (other === this) return true;
     return (other._googlePlusId == _googlePlusId);
   }
+  
+ int hashCode() {
+    int result = 17;
+    result = 37 * result + _googlePlusId.hashCode();
+    return result;
+  }  
   
 }
