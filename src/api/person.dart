@@ -10,6 +10,7 @@ class Person {
   String _location;
   String _description;
   String _profession;
+  // TODO société
   
   String get googlePlusId() => _googlePlusId;
   set googlePlusId(googlePlusId) => _googlePlusId = googlePlusId;

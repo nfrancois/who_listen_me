@@ -1,5 +1,7 @@
 #library("circles_api_extension_tests");
 
+#import("dart:json");
+
 #import('package:unittest/unittest.dart');
 //#import('../lib/unittest/unittest.dart');
 #import('dart:io');

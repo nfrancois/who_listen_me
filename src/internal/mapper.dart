@@ -1,5 +1,5 @@
 interface _Mapper<T> {
   
-  List<T> map();
+  List<T> map(String json);
   
 }
