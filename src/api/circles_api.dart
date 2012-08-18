@@ -38,7 +38,7 @@ class CirclesApi {
     };
   }
   
-  _responseHandler(HttpClientResponse response, void callback(CirclesResponse circlesResponse)){
+  _responseHandler(response, void callback(CirclesResponse circlesResponse)){
     if(response.statusCode == 200){
       var bytes = new List();
       InputStream input = response.inputStream;

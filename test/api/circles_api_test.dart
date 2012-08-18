@@ -9,13 +9,11 @@ class CirclesApiTest {
   _onResponseOk(){
     // Given
     var incomingFile = new File("test/resources/incoming_clean.txt");    
-    HttpClientResponse httpResponse = new HttpResponseMock(200, incomingFile);
+    var httpResponse = new HttpResponseMock(200, incomingFile);
     // When
-    /*
-    _circlesApi._responseHandler(httpResponse, (CirclesResponse response) {
-      expect(response.totalPersons, 3);
-    });
-    */
+    //_circlesApi._responseHandler(httpResponse, (CirclesResponse response) {
+      //expect(response.totalPersons, 3);
+    //});
   }
   
   // TODO response ko;
@@ -31,22 +29,17 @@ class CirclesApiTest {
   
 }
 
-// TODO use a mock
-class HttpResponseMock /*extends Mock*/ implements HttpClientResponse {
+class HttpResponseMock {
   
-  int _statusCode;
-  int _inputStream;
+  int statusCode;
+  InputStream inputStream;
+  var onError;
   
-  HttpResponseMock(this._statusCode, File file){
+  HttpResponseMock(this.statusCode, File file){
     var input = file.readAsTextSync();
     var inputStream = new ListInputStream();
     inputStream.write(input.charCodes());
-    // mock
-    //when(callsTo('statusCode')).alwaysCall(statusCode);
-    //when(callsTo('statusCode')).alwaysCall(_real.login);
   }
   
-  int get statusCode() => _statusCode;
-  InputStream get inputStream() => _inputStream;
   
 }

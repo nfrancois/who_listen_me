@@ -1,4 +1,6 @@
-
+/**
+ * Test for CirclerMapper
+ */ 
 class CirclerMapperTest {
   
   _CirclerMapper _circlerMapper;

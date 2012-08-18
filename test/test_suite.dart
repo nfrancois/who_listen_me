@@ -5,17 +5,17 @@
 #import('package:unittest/unittest.dart');
 #import('dart:io');
 
-// Test Classes 
-#source("api/circler_test.dart");
-#source("api/circles_api_test.dart");
-#source("internal/google_json_clean_test.dart");
-#source("internal/circler_mapper_test.dart");
 // Tested classes
 #source("../src/api/circles_api.dart");
 #source("../src/api/circler.dart");
 #source("../src/api/circles_response.dart");
 #source("../src/internal/google_json_cleaner.dart");
 #source("../src/internal/circler_mapper.dart");
+// Test Classes 
+#source("api/circler_test.dart");
+#source("api/circles_api_test.dart");
+#source("internal/google_json_clean_test.dart");
+#source("internal/circler_mapper_test.dart");
 
 /**
  * Call all tests.
