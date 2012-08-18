@@ -1,18 +1,16 @@
 /**
- * Objet for Person.
+ * Objet for Cicler.
  */ 
-class Person {
+class Circler {
   
-  //String _googleId;
   String googlePlusId;
   String name;
   String photo;
   String location;
   String description;
   String profession;
-  // TODO société
   
-  Person(this.googlePlusId);
+  Circler(this.googlePlusId);
   
   bool operator==(other) {
     if (other == null) return false;

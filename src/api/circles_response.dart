@@ -1,12 +1,12 @@
 /**
  * A response from CirclesApi.
- * Contains a list of visible persons and a total circles number
+ * Contains a list of visible circlers and a total circlers number
  */
 class CirclesResponse {
   
-  int totalPersons;
-  List<Person> visiblesPersons;
+  int totalCirclers;
+  List<Circler> visiblesCirclers;
   
-  CirclesResponse(this.totalPersons, this.visiblesPersons);
+  CirclesResponse(this.totalCirclers, this.visiblesCirclers);
  
 }

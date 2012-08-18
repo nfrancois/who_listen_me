@@ -5,9 +5,9 @@
  */ 
 main(){
   var circles = new CirclesApi('115816334172157652403');
-  circles.getPersonsWhoCircled( (CirclesResponse response) {
-    print("Total number of persons = ${response.totalPersons}");
+  circles.whoCircleMe( (CirclesResponse response) {
+    print("Total number of persons = ${response.totalCirclers}");
     print("Visible persons:");
-    response.visiblesPersons.forEach((person) => print(person.name));
+    response.visiblesCirclers.forEach((person) => print(person.name));
   });
 }

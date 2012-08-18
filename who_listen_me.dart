@@ -5,7 +5,7 @@
 #import("dart:json");
 
 #source("src/api/circles_api.dart");
-#source("src/api/person.dart");
+#source("src/api/circler.dart");
 #source("src/api/circles_response.dart");
 #source("src/internal/google_json_cleaner.dart");
-#source("src/internal/person_mapper.dart");
+#source("src/internal/circler_mapper.dart");

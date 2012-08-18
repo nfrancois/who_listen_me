@@ -12,7 +12,7 @@ class CirclesApi {
   // TODO final
   HttpClient _httpClient;
   _GoogleJsonCleaner _googleJsonCleanerTest;
-  _PersonMapper _personMapper;
+  _CirclerMapper _circlerMapper;
   
   /**
    * CirclesApi constructor.
@@ -21,39 +21,37 @@ class CirclesApi {
   CirclesApi(this._googlePlusId){
     _httpClient = new HttpClient();
     _googleJsonCleanerTest = new _GoogleJsonCleaner();
-    _personMapper = new _PersonMapper();    
+    _circlerMapper = new _CirclerMapper();    
   }
   
   /**
-   * Persons who add in their circles. 
+   * Find information about you add you in their circler. 
    */
-  // TODO faire fonctionner avec un =
-  getPersonsWhoCircled(void callback(CirclesResponse circlesResponse)){
+  whoCircleMe(void callback(CirclesResponse circlesResponse)){
     var url = "$_HTTPS_PROXY$_INCOMING_PERSON_URL".replaceFirst(_GOOGLE_PLUS_ID_TOKEN_URL, _googlePlusId);
     var connexion = _httpClient.getUrl(new Uri.fromString(url));
     //print(url);
-    connexion.onResponse = (HttpClientResponse response) => _responseHandler(response, callback); 
+    connexion.onResponse = (response) => _responseHandler(response, callback); 
     connexion.onError = (error)  {
-      // Log error
+      // TODO Log error
       callback(null);
     };
   }
   
-  // TODO tester ça
   _responseHandler(HttpClientResponse response, void callback(CirclesResponse circlesResponse)){
     if(response.statusCode == 200){
       var bytes = new List();
       InputStream input = response.inputStream;
       input.onClosed = () {
         var jsonText = _googleJsonCleanerTest.clean(bytes.getRange(6, bytes.length-6));
-        //print(jsonText);
-        var result = _personMapper.map(jsonText);
+        var result = _circlerMapper.map(jsonText);
         callback(result);
-        //print(result.visiblesPersons.length);
-        //print(result.totalPersons);
       };
       input.onData = () => bytes.addAll(input.read());
-      input.onError = (error) => print(error);
+      input.onError = (error) {
+        // TODO log erreur
+        callback(null);
+      };
     }    
   }
   

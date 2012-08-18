@@ -1,13 +1,13 @@
 /**
- * Test for Person.
+ * Test for Circler.
  */ 
-class PersonTest {
+class CirclerTest {
   
-  final Person _first;
-  final Person _second;
-  final Person _another;
+  final Circler _first;
+  final Circler _second;
+  final Circler _another;
   
-  PersonTest() : _first = new Person("115049522200141162219"), _second = new Person("106226789128312528511"), _another = new Person("115049522200141162219");
+  CirclerTest() : _first = new Circler("115049522200141162219"), _second = new Circler("106226789128312528511"), _another = new Circler("115049522200141162219");
   
   _not_equals_to_null(){
     // Then
@@ -40,16 +40,16 @@ class PersonTest {
   }  
   
   runTest(){
-    test('a person is not equal to null', () => _not_equals_to_null());
-    test('Same googlePlusId means same person', () => _sameGooglePlusId_equals());
-    test('Different googlePlusId means same different person', () => _differentGooglePlusId_NotEquals());
+    test('a circler is not equal to null', () => _not_equals_to_null());
+    test('Same googlePlusId means same circler', () => _sameGooglePlusId_equals());
+    test('Different googlePlusId means same different circler', () => _differentGooglePlusId_NotEquals());
     test('A person is equals to itself', () => _equalsToItself());
     test('Same google plus id means same hasCode', () => _sameGooglePlusId_sameHasCode());
     test('Different googlePlusId means different hasCode', () => _differentGooglePlusId_Not_sameHasCode());
   }
   
   String description(){
-    return "Person Test";
+    return "Circler Test";
   }
   
 }

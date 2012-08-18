@@ -1,4 +1,6 @@
-
+/**
+ * Clean the steam to be jsonable
+ */ 
 class _GoogleJsonCleaner {
   
   static final List<int> NULL_VALUE = const [110, 117, 108, 108];
