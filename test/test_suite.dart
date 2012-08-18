@@ -8,6 +8,7 @@
 
 // Test Classes 
 #source("api/person_test.dart");
+#source("api/circles_api_test.dart");
 #source("internal/google_json_clean_test.dart");
 #source("internal/person_mapper_test.dart");
 // Tested classes
@@ -27,13 +28,13 @@ class TestSuite {
    */
   final List<_Testable> _tests;  
   
-  TestSuite() : _tests = [ new GoogleJsonCleanerTest(), new PersonTest(), new PersonMapperTest() ];
+  TestSuite() : _tests = [ new GoogleJsonCleanerTest(), new PersonTest(), new PersonMapperTest(), new CirclesApiTest() ];
   
   /**
    * Run all tests
    */
   run(){
-    _tests.forEach((_test) => group('${_test.description()} - ', _test.runTest)) ;
+    _tests.forEach((_test) => group('${_test.description()} -', _test.runTest)) ;
   }
   
 }

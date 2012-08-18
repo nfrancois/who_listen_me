@@ -1,6 +1,7 @@
 /**
  * Map the clean json response to list of person. 
  */
+// TODO change name
 class _PersonMapper {
   
   static final String HTTP= "http:";

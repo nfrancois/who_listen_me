@@ -109,19 +109,17 @@ class GoogleJsonCleanerTest {
   }  
   
   runTest(){
-    group('', () {
-      setUp(() => _cleaner = new _GoogleJsonCleaner());
-      test('add null value between twos commas', () => _shouldANullBeetweenComma());
-      test('add null value between brace and comma', () => _shouldAddNullValueBetweenBraceAnComma());
-      test('add null value between comma and brace', () => _shouldAddNullValueBetweenCommaAndBrace());
-      test('ignore new line char', () => _ignoreSpace());
-      test('ignore space', () => _ignoreNewLine());
-      test('not ignore space in quote', () => _notIgnoreSpaceInQuote());
-      test('not ignore new line in quote', () => _notIgnoreNewLineInQuote());
-      test('don''t close quote after escape', () => _notCloseQuoteCharAfterEscape());
-      test('special char in quotes', () => _special_char_in_quotes());
-      test('complete response test', () => _completeResponse());
-    });
+    setUp(() => _cleaner = new _GoogleJsonCleaner());
+    test('add null value between twos commas', () => _shouldANullBeetweenComma());
+    test('add null value between brace and comma', () => _shouldAddNullValueBetweenBraceAnComma());
+    test('add null value between comma and brace', () => _shouldAddNullValueBetweenCommaAndBrace());
+    test('ignore new line char', () => _ignoreSpace());
+    test('ignore space', () => _ignoreNewLine());
+    test('not ignore space in quote', () => _notIgnoreSpaceInQuote());
+    test('not ignore new line in quote', () => _notIgnoreNewLineInQuote());
+    test('don''t close quote after escape', () => _notCloseQuoteCharAfterEscape());
+    test('special char in quotes', () => _special_char_in_quotes());
+    test('complete response test', () => _completeResponse());
   }
   
   String description(){
