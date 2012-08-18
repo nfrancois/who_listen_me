@@ -3,55 +3,44 @@
  */ 
 class PersonTest {
   
-  _sameGooglePlusId_equals(){
-    // Given
-    Person first = new Person();
-    first.googlePlusId = "106226789128312528511";
-    Person second = new Person();
-    second.googlePlusId = "106226789128312528511";
+  final Person _first;
+  final Person _second;
+  final Person _another;
+  
+  PersonTest() : _first = new Person("115049522200141162219"), _second = new Person("106226789128312528511"), _another = new Person("115049522200141162219");
+  
+  _not_equals_to_null(){
     // Then
-    expect(first == second);
+    expect(_first != null);
+  }
+  
+  _sameGooglePlusId_equals(){
+    // Then
+    expect(_first == _another);
   }
   
   _sameGooglePlusId_sameHasCode(){
-    // Given
-    Person first = new Person();
-    first.googlePlusId = "106226789128312528511";
-    Person second = new Person();
-    second.googlePlusId = "106226789128312528511";
     // Then
-    expect(first.hashCode() == second.hashCode());
+    expect(_first.hashCode() == _another.hashCode());
   }  
   
   _differentGooglePlusId_NotEquals(){
-    // Given
-    var first = new Person();
-    first.googlePlusId = "115049522200141162219";
-    var second = new Person();
-    second.googlePlusId = "106226789128312528511";
     // Then
-    expect(first != second);
+    expect(_first != _second);
   }  
   
   _differentGooglePlusId_Not_sameHasCode(){
-    // Given
-    var first = new Person();
-    first.googlePlusId = "115049522200141162219";
-    var second = new Person();
-    second.googlePlusId = "106226789128312528511";
     // Then
-    expect(first.hashCode() != second.hashCode());
+    expect(_first.hashCode() != _second.hashCode());
   }   
   
   _equalsToItself(){
-    // Given
-    var person = new Person();
-    person.googlePlusId = "106226789128312528511";
     // Then
-    expect(person == person);
+    expect(_first == _first);
   }  
   
   runTest(){
+    test('a person is not equal to null', () => _not_equals_to_null());
     test('Same googlePlusId means same person', () => _sameGooglePlusId_equals());
     test('Different googlePlusId means same different person', () => _differentGooglePlusId_NotEquals());
     test('A person is equals to itself', () => _equalsToItself());

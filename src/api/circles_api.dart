@@ -1,3 +1,6 @@
+/**
+ * Api EntryPoint.
+ */
 class CirclesApi {
   
   static final _GOOGLE_PLUS_ID_TOKEN_URL = @"$googlePlusId";
@@ -5,21 +8,28 @@ class CirclesApi {
   
   static final String _HTTPS_PROXY = "http://nfrproxy.appspot.com/proxy?url=";
   
-  final String _googleId;
+  final String _googlePlusId;
   HttpClient _httpClient;
   _GoogleJsonCleaner _googleJsonCleanerTest;
   _PersonMapper _personMapper;
   
-  CirclesApi(this._googleId){
+  /**
+   * CirclesApi constructor.
+   * _googlePlusId : Google Plus Id.
+   */
+  CirclesApi(this._googlePlusId){
     _httpClient = new HttpClient();
     _googleJsonCleanerTest = new _GoogleJsonCleaner();
     _personMapper = new _PersonMapper();    
   }
   
+  /**
+   * Persons who add in their circles. 
+   */
   getPersonsWhoCircled(){
-    var url = "$_HTTPS_PROXY$_INCOMING_PERSON_URL".replaceFirst(_GOOGLE_PLUS_ID_TOKEN_URL, _googleId);
+    var url = "$_HTTPS_PROXY$_INCOMING_PERSON_URL".replaceFirst(_GOOGLE_PLUS_ID_TOKEN_URL, _googlePlusId);
     var connexion = _httpClient.getUrl(new Uri.fromString(url));
-    print(url);
+    //print(url);
     connexion.onResponse = (HttpClientResponse response) { 
       // TODO tester ça
       if(response.statusCode == 200){
@@ -27,8 +37,8 @@ class CirclesApi {
         InputStream input = response.inputStream;
         input.onClosed = () {
           var jsonText = _googleJsonCleanerTest.clean(bytes.getRange(6, bytes.length-6));
-          print(jsonText);
-          var list = _personMapper.map(jsonText);
+          //print(jsonText);
+          var list = _personMapper._mapPersons(jsonText);
           print(list.length);
         };
         input.onData = () => bytes.addAll(input.read());
@@ -36,6 +46,7 @@ class CirclesApi {
       }
       connexion.onError = (error) {
         print(error);
+        return null;
       };
     };
   }

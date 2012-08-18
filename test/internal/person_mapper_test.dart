@@ -41,8 +41,11 @@ class PersonMapperTest {
     // Given
     var incoming = (new File("test/resources/incoming_clean.txt")).readAsTextSync();
     // When
-    var persons = _personMapper.map(incoming);
+    var response = _personMapper.map(incoming);
     // Then
+    var persons = response.visiblesPersons;
+    expect(response, isNotNull);
+    expect(response.totalPersons, equals(5));
     expect(persons, isNotNull);
     expect(persons.length, equals(2));
     expect(persons[0].googlePlusId, equals("115049522200141162219"));

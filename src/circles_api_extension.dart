@@ -6,7 +6,6 @@
 
 #source("api/circles_api.dart");
 #source("api/person.dart");
-#source("api/circle_response.dart");
+#source("api/circles_response.dart");
 #source("internal/google_json_cleaner.dart");
-#source("internal/mapper.dart");
 #source("internal/person_mapper.dart");

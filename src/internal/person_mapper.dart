@@ -1,18 +1,24 @@
 /**
  * Map the clean json response to list of person. 
  */
-class _PersonMapper implements _Mapper<Person> {
+class _PersonMapper {
   
   static final String HTTP= "http:";
   
-  Collection<Person> map(String jsonText){
+  CirclesResponse map(String jsonText){
     var jsonTab = JSON.parse(jsonText);
-    return jsonTab[0][2].map((jsonFragment) => _mapPerson(jsonFragment));
+    var totalPersons = jsonTab[0][4];
+    var visiblesPersons = _mapPersons(jsonTab[0][2]);
+    return new CirclesResponse(totalPersons, visiblesPersons);
+  }
+  
+  
+  Collection<Person> _mapPersons(jsonTab){
+    return jsonTab.map((jsonFragment) => _mapPerson(jsonFragment));
   }
   
   Person _mapPerson(jsonFragment){
-    var person = new Person();
-    person.googlePlusId = jsonFragment[0][2];
+    var person = new Person(jsonFragment[0][2]);
     person.name = jsonFragment[2][0];
     var photo = jsonFragment[2][8];
     person.photo = (photo.startsWith(HTTP)) ? photo : "$HTTP$photo";
