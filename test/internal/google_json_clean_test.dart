@@ -84,6 +84,17 @@ class GoogleJsonCleanerTest {
     expect(result, isNotNull);
     expect(result, equals(@'"\"something in quotes in the quotes\""'));
   }  
+  
+  _special_char_in_quotes(){
+    // Given
+    var incoming = @'"\u0026",,'.charCodes();
+    // When
+    var result = _cleaner.clean(incoming);
+    // Then
+    expect(result, isNotNull);
+    expect(result, equals(@'"\u0026",null,')); 
+    
+  }
  
   _completeResponse(){
       // Given
@@ -108,6 +119,7 @@ class GoogleJsonCleanerTest {
       test('not ignore space in quote', () => _notIgnoreSpaceInQuote());
       test('not ignore new line in quote', () => _notIgnoreNewLineInQuote());
       test('don''t close quote after escape', () => _notCloseQuoteCharAfterEscape());
+      test('special char in quotes', () => _special_char_in_quotes());
       test('complete response test', () => _completeResponse());
     });
   }

@@ -33,6 +33,9 @@ class _GoogleJsonCleaner {
         
         lastChar = currentChar;
       } else if(isInStringValue) {
+        if(lastChar == ESCAPE){
+          isInEscape = false;
+        }
         buffer.add(currentChar);
         lastChar = currentChar;
       }
