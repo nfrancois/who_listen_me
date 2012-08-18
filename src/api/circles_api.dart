@@ -27,16 +27,20 @@ class CirclesApi {
   /**
    * Persons who add in their circles. 
    */
-  getPersonsWhoCircled(){
+  // TODO faire fonctionner avec un =
+  getPersonsWhoCircled(void callback(CirclesResponse circlesResponse)){
     var url = "$_HTTPS_PROXY$_INCOMING_PERSON_URL".replaceFirst(_GOOGLE_PLUS_ID_TOKEN_URL, _googlePlusId);
     var connexion = _httpClient.getUrl(new Uri.fromString(url));
     //print(url);
-    connexion.onResponse = (HttpClientResponse response) => _responseHandler(response); 
-    connexion.onError = (error) => print(error);
+    connexion.onResponse = (HttpClientResponse response) => _responseHandler(response, callback); 
+    connexion.onError = (error)  {
+      // Log error
+      callback(null);
+    };
   }
   
   // TODO tester ça
-  _responseHandler(HttpClientResponse response){
+  _responseHandler(HttpClientResponse response, void callback(CirclesResponse circlesResponse)){
     if(response.statusCode == 200){
       var bytes = new List();
       InputStream input = response.inputStream;
@@ -44,8 +48,9 @@ class CirclesApi {
         var jsonText = _googleJsonCleanerTest.clean(bytes.getRange(6, bytes.length-6));
         //print(jsonText);
         var result = _personMapper.map(jsonText);
-        print(result.visiblesPersons.length);
-        print(result.totalPersons);
+        callback(result);
+        //print(result.visiblesPersons.length);
+        //print(result.totalPersons);
       };
       input.onData = () => bytes.addAll(input.read());
       input.onError = (error) => print(error);

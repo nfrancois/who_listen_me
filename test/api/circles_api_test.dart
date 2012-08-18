@@ -11,7 +11,11 @@ class CirclesApiTest {
     var incomingFile = new File("test/resources/incoming_clean.txt");    
     HttpClientResponse httpResponse = new HttpResponseMock(200, incomingFile);
     // When
-    //_circlesApi._responseHandler(httpResponse);
+    /*
+    _circlesApi._responseHandler(httpResponse, (CirclesResponse response) {
+      expect(response.totalPersons, 3);
+    });
+    */
   }
   
   // TODO response ko;
