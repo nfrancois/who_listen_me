@@ -19,12 +19,12 @@ class _CirclerMapper {
   
   Circler _mapCircler(jsonFragment){
     var circler = new Circler(jsonFragment[0][2]);
-    circler.name = jsonFragment[2][0];
     var photo = jsonFragment[2][8];
-    circler.photo = (photo.startsWith(HTTP)) ? photo : "$HTTP$photo";
-    circler.location = jsonFragment[2][11];
-    circler.profession = jsonFragment[2][14];
-    circler.description = jsonFragment[2][21];
+    circler..name = jsonFragment[2][0]
+           ..photo = ((photo.startsWith(HTTP)) ? photo : "$HTTP$photo")
+           ..location = jsonFragment[2][11]
+           ..profession = jsonFragment[2][14]
+           ..description = jsonFragment[2][21];
     return circler;
   }
   

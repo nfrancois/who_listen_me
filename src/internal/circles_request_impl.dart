@@ -20,8 +20,8 @@ class _CirclesRequest implements CirclesRequest {
   _execute(){  
     var url = "$_HTTPS_PROXY$_INCOMING_PERSON_URL".replaceFirst(_GOOGLE_PLUS_ID_TOKEN_URL, _googlePlusId);
     var connexion = _executor._httpClient.getUrl(new Uri.fromString(url));
-    connexion.onResponse = (httpResponse) => _responseHandler(httpResponse); 
-    connexion.onError = (error)  {
+    connexion..onResponse = (httpResponse) => _responseHandler(httpResponse) 
+             ..onError = (error)  {
       if(_onErrorCallback != null){
         _onErrorCallback(error);
       }
@@ -32,15 +32,15 @@ class _CirclesRequest implements CirclesRequest {
     if(httpResponse.statusCode == 200){
       var bytes = new List();
       InputStream input = httpResponse.inputStream;
-      input.onClosed = () {
+      input..onClosed = () {
         var jsonText = _executor._googleJsonCleanerTest.clean(bytes.getRange(6, bytes.length-6));
         var circlesResponse = _executor._circlerMapper.map(jsonText);
         if(_onResponseCallback != null){
           _onResponseCallback(circlesResponse);
         }
-      };
-      input.onData = () => bytes.addAll(input.read());
-      input.onError = (error) {
+      }
+           ..onData = (() => bytes.addAll(input.read()))
+           ..onError = (error) {
         if(_onErrorCallback != null){
           _onErrorCallback(error);
         }
