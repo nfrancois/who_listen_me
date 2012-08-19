@@ -1,15 +1,16 @@
 /**
  * Test for CirclesApi. 
  */
+// TODO 
 class CirclesApiTest {
   
-  CirclesApi _circlesApi;
+  //CirclesApi _circlesApi;
   
   
   _onResponseOk(){
     // Given
-    var incomingFile = new File("test/resources/incoming_clean.txt");    
-    var httpResponse = new HttpResponseMock(200, incomingFile);
+    //var incomingFile = new File("test/resources/incoming_clean.txt");    
+    //var httpResponse = new HttpResponseMock(200, incomingFile);
     // When
     //_circlesApi._responseHandler(httpResponse, (CirclesResponse response) {
       //expect(response.totalPersons, 3);
@@ -19,7 +20,7 @@ class CirclesApiTest {
   // TODO response ko;
   
   runTest(){
-    setUp(() => _circlesApi = new CirclesApi("106226789128312528511"));
+    //setUp(() => _circlesApi = new CirclesApi("106226789128312528511"));
     test('response ok', () => _onResponseOk());
   }
   

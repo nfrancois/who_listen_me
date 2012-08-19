@@ -10,3 +10,5 @@
 #source("src/api/circles_response.dart");
 #source("src/internal/google_json_cleaner.dart");
 #source("src/internal/circler_mapper.dart");
+#source("src/internal/circles_request_executor.dart");
+#source("src/internal/circles_request_impl.dart");
