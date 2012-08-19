@@ -3,57 +3,76 @@
  */
 class CirclesApi {
   
+  
+  /**
+   * Find information about you add you in their circler. 
+   */
+  CirclesRequest whoCircleMe(String googlePlusId){
+    var request = new _CirclesRequest(googlePlusId);
+    request._execute();
+    return request;
+  }
+    
+}
+
+class _CirclesRequest implements CirclesRequest {
+  
   static final _GOOGLE_PLUS_ID_TOKEN_URL = @"$googlePlusId";
   static final _INCOMING_PERSON_URL = "https://plus.google.com/_/socialgraph/lookup/incoming/?o=%5Bnull%2Cnull%2C%22$_GOOGLE_PLUS_ID_TOKEN_URL%22%5D&n=1000";
   
   static final String _HTTPS_PROXY = "http://nfrproxy.appspot.com/proxy?url=";
   
   final String _googlePlusId;
-  // TODO final
-  HttpClient _httpClient;
-  _GoogleJsonCleaner _googleJsonCleanerTest;
-  _CirclerMapper _circlerMapper;
+  final HttpClient _httpClient;
+  final _GoogleJsonCleaner _googleJsonCleanerTest;
+  final _CirclerMapper _circlerMapper;
   
+  var _onResponseCallback;
+  var _onErrorCallback;
+
   /**
    * CirclesApi constructor.
    * _googlePlusId : Google Plus Id.
    */
-  CirclesApi(this._googlePlusId){
-    _httpClient = new HttpClient();
-    _googleJsonCleanerTest = new _GoogleJsonCleaner();
-    _circlerMapper = new _CirclerMapper();    
-  }
-  
-  /**
-   * Find information about you add you in their circler. 
-   */
-  whoCircleMe(void callback(CirclesResponse circlesResponse)){
+  _CirclesRequest(this._googlePlusId) : _httpClient = new HttpClient(), _googleJsonCleanerTest = new _GoogleJsonCleaner(), _circlerMapper = new _CirclerMapper();    
+
+  _execute(){  
     var url = "$_HTTPS_PROXY$_INCOMING_PERSON_URL".replaceFirst(_GOOGLE_PLUS_ID_TOKEN_URL, _googlePlusId);
     var connexion = _httpClient.getUrl(new Uri.fromString(url));
-    //print(url);
-    connexion.onResponse = (response) => _responseHandler(response, callback); 
+    connexion.onResponse = (httpResponse) => _responseHandler(httpResponse); 
     connexion.onError = (error)  {
-      // TODO Log error
-      callback(null);
+      if(_onErrorCallback != null){
+        _onErrorCallback(error);
+      }
     };
-  }
+  }  
   
-  _responseHandler(response, void callback(CirclesResponse circlesResponse)){
-    if(response.statusCode == 200){
+  _responseHandler(httpResponse){
+    if(httpResponse.statusCode == 200){
       var bytes = new List();
-      InputStream input = response.inputStream;
+      InputStream input = httpResponse.inputStream;
       input.onClosed = () {
         var jsonText = _googleJsonCleanerTest.clean(bytes.getRange(6, bytes.length-6));
-        var result = _circlerMapper.map(jsonText);
-        callback(result);
+        var circlesResponse = _circlerMapper.map(jsonText);
+        if(_onResponseCallback != null){
+          _onResponseCallback(circlesResponse);
+        }
       };
       input.onData = () => bytes.addAll(input.read());
       input.onError = (error) {
-        // TODO log erreur
-        callback(null);
+        if(_onErrorCallback != null){
+          _onErrorCallback(error);
+        }
       };
     }    
+  }  
+  
+  void onResponse(void callback(CirclesResponse response)){
+    _onResponseCallback = callback;
   }
   
+  void onError(void callback(error)){
+    _onErrorCallback = callback;
+  }
   
 }

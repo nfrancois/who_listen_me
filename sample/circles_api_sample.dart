@@ -4,10 +4,13 @@
  * This sample list persons in our google plus page.
  */ 
 main(){
-  var circles = new CirclesApi('115816334172157652403');
-  circles.whoCircleMe( (CirclesResponse response) {
+  var circles = new CirclesApi();
+  var request = circles.whoCircleMe('115816334172157652403');
+  request.onError((error) => print(error));
+  request.onResponse((response) {
     print("Total number of persons = ${response.totalCirclers}");
     print("Visible persons:");
     response.visiblesCirclers.forEach((person) => print(person.name));
   });
+  
 }
