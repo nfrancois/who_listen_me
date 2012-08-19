@@ -13,6 +13,7 @@
 #source("../src/internal/circler_mapper.dart");
 // Test Classes 
 #source("api/circler_test.dart");
+#source("api/circles_response_test.dart");
 #source("api/circles_api_test.dart");
 #source("internal/google_json_clean_test.dart");
 #source("internal/circler_mapper_test.dart");
@@ -27,7 +28,7 @@ class TestSuite {
    */
   final List<_Testable> _tests;  
   
-  TestSuite() : _tests = [ new GoogleJsonCleanerTest(), new CirclerTest(), new CirclerMapperTest(), new CirclesApiTest() ];
+  TestSuite() : _tests = [ new GoogleJsonCleanerTest(), new CirclerTest(), new CirclerMapperTest(), new CirclesApiTest(), new CirclesResponseTest() ];
   
   /**
    * Run all tests
