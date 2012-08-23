@@ -13,3 +13,4 @@
 #source("src/internal/circler_mapper.dart");
 #source("src/internal/circles_request_executor.dart");
 #source("src/internal/circles_request_impl.dart");
+#source("src/internal/users_mapper.dart");

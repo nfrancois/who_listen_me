@@ -4,11 +4,12 @@
  */ 
 class FollowersNumberResponse {
   
+  String nickname;
   String name;
   int id;
   int totalFollowers;
   
-  FollowersNumberResponse(this.name, this.id, this.totalFollowers);
+  FollowersNumberResponse(this.nickname, this.name, this.id, this.totalFollowers);
 
   bool operator==(other) {
     if (other == null) return false;

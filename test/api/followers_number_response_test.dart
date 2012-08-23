@@ -8,10 +8,10 @@ class FollowersNumberResponseTest {
   final FollowersNumberResponse _third;
   final FollowersNumberResponse _another;
   
-  FollowersNumberResponseTest() : _first = new FollowersNumberResponse("nicofrancois", 51171270, 264), //
-                                  _second = new FollowersNumberResponse("girouguillaume", 572619573, 36), //
-                                  _third = new FollowersNumberResponse("nicofrancois", 51171270, 265), //
-                                  _another = new FollowersNumberResponse("nicofrancois", 51171270, 264);
+  FollowersNumberResponseTest() : _first = new FollowersNumberResponse("Nicolas François", "nicofrancois", 51171270, 264), //
+                                  _second = new FollowersNumberResponse("Guillaume Girou", "girouguillaume", 572619573, 36), //
+                                  _third = new FollowersNumberResponse("Nicolas François","nicofrancois", 51171270, 265), //
+                                  _another = new FollowersNumberResponse("Nicolas François","nicofrancois", 51171270, 264);
   
   _are_equals(){
     equals(_first == _another);
