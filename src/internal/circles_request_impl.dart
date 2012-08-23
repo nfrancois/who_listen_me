@@ -20,7 +20,7 @@ class _CirclesRequest implements CirclesRequest {
   _execute(){  
     var url = "$_HTTPS_PROXY$_INCOMING_PERSON_URL".replaceFirst(_GOOGLE_PLUS_ID_TOKEN_URL, _googlePlusId);
     var connexion = _executor._httpClient.getUrl(new Uri.fromString(url));
-    connexion..onResponse = (httpResponse) => _responseHandler(httpResponse) 
+    connexion..onResponse = ((httpResponse) => _responseHandler(httpResponse))
              ..onError = (error)  {
       if(_onErrorCallback != null){
         _onErrorCallback(error);
