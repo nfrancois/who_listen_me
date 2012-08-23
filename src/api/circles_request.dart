@@ -3,8 +3,8 @@
  */ 
 interface CirclesRequest {
   
-  void onResponse(void callback(CirclesResponse response));
+  void set onResponse(void callback(CirclesResponse response));
   
-  void onError(void callback(error));
+  void set onError(void callback(error));
   
 }

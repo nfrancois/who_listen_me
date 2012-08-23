@@ -48,11 +48,11 @@ class _CirclesRequest implements CirclesRequest {
     }    
   }  
   
-  void onResponse(void callback(CirclesResponse response)){
+  void set onResponse(void callback(CirclesResponse response)){
     _onResponseCallback = callback;
   }
   
-  void onError(void callback(error)){
+  void set onError(void callback(error)){
     _onErrorCallback = callback;
   }
   
