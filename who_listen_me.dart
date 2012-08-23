@@ -8,6 +8,7 @@
 #source("src/api/circler.dart");
 #source("src/api/circles_request.dart");
 #source("src/api/circles_response.dart");
+#source("src/api/followers_number_response.dart");
 #source("src/internal/google_json_cleaner.dart");
 #source("src/internal/circler_mapper.dart");
 #source("src/internal/circles_request_executor.dart");
