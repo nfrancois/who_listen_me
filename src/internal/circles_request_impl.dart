@@ -11,7 +11,6 @@ class _CirclesRequest implements CirclesRequest {
   var _onResponseCallback;
   var _onErrorCallback;
   
-  HttpClientConnection _connexion;
   bool _isCanceled = false;  
 
   /**
@@ -22,12 +21,13 @@ class _CirclesRequest implements CirclesRequest {
 
   _execute(){  
     var url = "$_HTTPS_PROXY$_INCOMING_PERSON_URL".replaceFirst(_GOOGLE_PLUS_ID_TOKEN_URL, _googlePlusId);
-    _connexion = _executor._httpClient.getUrl(new Uri.fromString(url));
-    _connexion..onResponse = ((httpResponse) => _responseHandler(httpResponse))
+    var connexion = _executor._httpClient.getUrl(new Uri.fromString(url));
+    connexion..onResponse = ((httpResponse) => _responseHandler(httpResponse))
              ..onError = (error)  {
       if(_onErrorCallback != null && !_isCanceled){
         _onErrorCallback(error);
       }
+      _stopHttpClient();
     };
   }  
   
@@ -41,12 +41,14 @@ class _CirclesRequest implements CirclesRequest {
         if(_onResponseCallback != null && !_isCanceled){
           _onResponseCallback(circlesResponse);
         }
+        _stopHttpClient();
       }
            ..onData = (() => bytes.addAll(input.read()))
            ..onError = (error) {
         if(_onErrorCallback != null && !_isCanceled){
           _onErrorCallback(error);
         }
+        _stopHttpClient();
       };
     }    
   }  
@@ -61,9 +63,11 @@ class _CirclesRequest implements CirclesRequest {
   
   void cancel(){
     _isCanceled = true;
-    if(_connexion != null){
-      //_connexion.detachSocket();
-    }
+    _stopHttpClient();
+  }
+  
+  _stopHttpClient(){
+    _executor._httpClient.shutdown();
   }
   
 }

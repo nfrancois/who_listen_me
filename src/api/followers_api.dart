@@ -3,12 +3,8 @@
  */ 
 class FollowersApi {
   
-  final FollowersRequestExecutor _executor;
-  
-  FollowersApi() : _executor = new FollowersRequestExecutor();
-  
   FollowersNumberRequest getFollowerNumberByNickname(String nickname){
-    var request = new _FollowersNumberRequest(_executor);
+    var request = new _FollowersNumberRequest(new FollowersRequestExecutor());
     request._execute(nickname);
     return request;
   }

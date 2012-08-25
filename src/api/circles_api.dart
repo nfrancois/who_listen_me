@@ -3,15 +3,11 @@
  */
 class CirclesApi {
   
- final  _CirclesRequestExecutor _executor;
-  
-  CirclesApi() : _executor = new _CirclesRequestExecutor();
-  
   /**
    * Find information about you add you in their circler. 
    */
   CirclesRequest whoCircleMe(String googlePlusId){
-    var request = new _CirclesRequest(googlePlusId, _executor);
+    var request = new _CirclesRequest(googlePlusId, new _CirclesRequestExecutor());
     request._execute();
     return request;
   }
