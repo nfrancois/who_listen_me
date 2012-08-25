@@ -26,7 +26,7 @@ class _FollowersNumberRequest implements FollowersNumberRequest {
   }
   
   _responseHandler(httpResponse){
-    if(httpResponse.statusCode == 200){
+    if(httpResponse.statusCode == 200 && !_isCanceled){
       var buffer = new StringBuffer();
       InputStream input = httpResponse.inputStream;
       input..onClosed = () {
@@ -55,7 +55,7 @@ class _FollowersNumberRequest implements FollowersNumberRequest {
   void cancel(){
     _isCanceled = true;
     if(_connexion != null){
-      _connexion.detachSocket();
+      //_connexion.detachSocket();
     }
   }  
   

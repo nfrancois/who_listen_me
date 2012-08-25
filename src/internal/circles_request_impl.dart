@@ -32,7 +32,7 @@ class _CirclesRequest implements CirclesRequest {
   }  
   
   _responseHandler(httpResponse){
-    if(httpResponse.statusCode == 200){
+    if(httpResponse.statusCode == 200 && !_isCanceled){
       var bytes = new List();
       InputStream input = httpResponse.inputStream;
       input..onClosed = () {
@@ -60,8 +60,9 @@ class _CirclesRequest implements CirclesRequest {
   }
   
   void cancel(){
+    _isCanceled = true;
     if(_connexion != null){
-      _connexion.detachSocket();
+      //_connexion.detachSocket();
     }
   }
   
