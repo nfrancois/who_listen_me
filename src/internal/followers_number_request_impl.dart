@@ -9,14 +9,17 @@ class _FollowersNumberRequest implements FollowersNumberRequest {
   var _onResponseCallback;
   var _onErrorCallback;  
   
+  HttpClientConnection _connexion;
+  bool _isCanceled = false;
+  
   _FollowersNumberRequest(this._executor);
 
   _execute(String nickname) {
     var url = USERS_API_BY_NICKNAME.replaceFirst(NICKNAME_FIELD, nickname);
-    var connexion = _executor._httpClient.getUrl(new Uri.fromString(url));
-    connexion..onResponse = ((httpResponse) => _responseHandler(httpResponse))
+    _connexion = _executor._httpClient.getUrl(new Uri.fromString(url));
+    _connexion..onResponse = ((httpResponse) => _responseHandler(httpResponse))
              ..onError = (error)  {
-      if(_onErrorCallback != null){
+      if(_onErrorCallback != null && !_isCanceled){
         _onErrorCallback(error);
       }
     };    
@@ -28,13 +31,13 @@ class _FollowersNumberRequest implements FollowersNumberRequest {
       InputStream input = httpResponse.inputStream;
       input..onClosed = () {
         var response = _executor._userMapper.map(buffer.toString());
-        if(_onResponseCallback != null){
+        if(_onResponseCallback != null && !_isCanceled){
           _onResponseCallback(response);
         }
       }
            ..onData = (() => buffer.add(new String.fromCharCodes(input.read())))
            ..onError = (error) {
-        if(_onErrorCallback != null){
+        if(_onErrorCallback != null && !_isCanceled){
           _onErrorCallback(error);
         }
       };
@@ -47,6 +50,13 @@ class _FollowersNumberRequest implements FollowersNumberRequest {
   
   void set onError(void callback(error)){
     _onErrorCallback = callback;
+  }  
+
+  void cancel(){
+    _isCanceled = true;
+    if(_connexion != null){
+      _connexion.detachSocket();
+    }
   }  
   
 }

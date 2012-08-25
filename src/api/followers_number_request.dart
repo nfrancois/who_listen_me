@@ -3,8 +3,19 @@
  */  
 interface FollowersNumberRequest {
   
+  /**
+   * When response is received.
+   */ 
   void set onResponse(void callback(FollowersNumberResponse response));
   
-  void set onError(void callback(error));  
+  /**
+   * Sometimes errors happens.
+   */ 
+  void set onError(void callback(error)); 
+  
+  /**
+   * Cancel the request.
+   */ 
+  void cancel();
   
 }
