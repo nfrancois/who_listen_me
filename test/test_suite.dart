@@ -9,10 +9,13 @@
 #source("../src/api/circles_api.dart");
 #source("../src/api/circler.dart");
 #source("../src/api/circles_response.dart");
+#source("../src/api/circles_request.dart");
 #source("../src/api/followers_number_response.dart");
 #source("../src/internal/google_json_cleaner.dart");
 #source("../src/internal/circler_mapper.dart");
 #source("../src/internal/users_mapper.dart");
+#source("../src/internal/circles_request_impl.dart");
+#source("../src/internal/circles_request_executor.dart");
 // Test Classes 
 #source("api/circler_test.dart");
 #source("api/circles_response_test.dart");
@@ -21,7 +24,7 @@
 #source("internal/google_json_clean_test.dart");
 #source("internal/users_mapper_test.dart");
 #source("internal/followers_mapper_test.dart");
-
+#source("internal/circles_request_impl_test.dart");
 /**
  * Call all tests.
  */
@@ -32,7 +35,9 @@ class TestSuite {
    */
   final List<_Testable> _tests;  
   
-  TestSuite() : _tests = [ new GoogleJsonCleanerTest(), new CirclerTest(), new CirclerMapperTest(), new CirclesApiTest(), new CirclesResponseTest(), new FollowersNumberResponseTest(), new FollowersMapperTest() ];
+  TestSuite() : _tests = [ new GoogleJsonCleanerTest(), new CirclerTest(), new CirclerMapperTest(), //
+                           new CirclesApiTest(), new CirclesResponseTest(), new FollowersNumberResponseTest(), //
+                           new FollowersMapperTest(), new CirclesRequestImplTest() ];
   
   /**
    * Run all tests
