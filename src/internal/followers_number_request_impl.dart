@@ -43,7 +43,9 @@ class _FollowersNumberRequest implements FollowersNumberRequest {
         }
         _stopHttpClient();
       };
-    }    
+    } else {
+      _stopHttpClient();
+    }
   }  
   
   void set onResponse(void callback(FollowersNumberResponse response)){

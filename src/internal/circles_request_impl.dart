@@ -50,6 +50,8 @@ class _CirclesRequest implements CirclesRequest {
         }
         _stopHttpClient();
       };
+    } else {
+      _stopHttpClient();
     }    
   }  
   
