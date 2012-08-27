@@ -1,9 +1,10 @@
 #library("circles_api_extension_tests");
 
 #import("dart:json");
+#import('dart:io');
+#import("dart:uri");
 
 #import('package:unittest/unittest.dart');
-#import('dart:io');
 
 // Tested classes
 #source("../src/api/circles_api.dart");
