@@ -23,36 +23,35 @@ class _CirclesRequest implements CirclesRequest {
     var url = "$_HTTPS_PROXY$_INCOMING_PERSON_URL".replaceFirst(_GOOGLE_PLUS_ID_TOKEN_URL, _googlePlusId);
     var connexion = _executor._httpClient.getUrl(new Uri.fromString(url));
     connexion..onResponse = ((httpResponse) => _responseHandler(httpResponse))
-             ..onError = (error)  {
-      if(_onErrorCallback != null && !_isCanceled){
-        _onErrorCallback(error);
-      }
-      _stopHttpClient();
-    };
+             ..onError = (error)  => _error(error);
   }  
   
   _responseHandler(httpResponse){
     if(httpResponse.statusCode == 200 && !_isCanceled){
       var bytes = new List();
       InputStream input = httpResponse.inputStream;
-      input..onClosed = () {
-        var jsonText = _executor._googleJsonCleanerTest.clean(bytes.getRange(6, bytes.length-6));
-        var circlesResponse = _executor._circlerMapper.map(jsonText);
-        if(_onResponseCallback != null && !_isCanceled){
-          _onResponseCallback(circlesResponse);
-        }
-        _stopHttpClient();
-      }
+      input..onClosed = (()  => _result(bytes.getRange(6, bytes.length-6)))
            ..onData = (() => bytes.addAll(input.read()))
-           ..onError = (error) {
-        if(_onErrorCallback != null && !_isCanceled){
-          _onErrorCallback(error);
-        }
-        _stopHttpClient();
-      };
+           ..onError = (error)  => _error(error);
     } else {
-      _stopHttpClient();
-    }    
+     _error('Bad http status ${httpResponse.statusCode}');
+    }   
+  }
+  
+  void _result(List<int> bytes){
+    var jsonText = _executor._googleJsonCleanerTest.clean(bytes);
+    var circlesResponse = _executor._circlerMapper.map(jsonText);
+    if(_onResponseCallback != null && !_isCanceled){
+      _onResponseCallback(circlesResponse);
+    }
+    _stopHttpClient(); 
+  }  
+  
+  void _error(error){
+    if(_onErrorCallback != null && !_isCanceled){
+      _onErrorCallback(error);
+    }
+    _stopHttpClient();    
   }  
   
   void set onResponse(void callback(CirclesResponse response)){

@@ -17,36 +17,35 @@ class _FollowersNumberRequest implements FollowersNumberRequest {
     var url = USERS_API_BY_NICKNAME.replaceFirst(NICKNAME_FIELD, nickname);
     var connexion = _executor._httpClient.getUrl(new Uri.fromString(url));
     connexion..onResponse = ((httpResponse) => _responseHandler(httpResponse))
-             ..onError = (error)  {
-      if(_onErrorCallback != null && !_isCanceled){
-        _onErrorCallback(error);
-      }
-      _stopHttpClient();
-    };    
+             ..onError = (error)  => _error(error);
   }
   
   _responseHandler(httpResponse){
     if(httpResponse.statusCode == 200 && !_isCanceled){
       var buffer = new StringBuffer();
       InputStream input = httpResponse.inputStream;
-      input..onClosed = () {
-        var response = _executor._userMapper.map(buffer.toString());
-        if(_onResponseCallback != null && !_isCanceled){
-          _onResponseCallback(response);
-        }
-        _stopHttpClient();
-      }
+      input..onClosed = (() => _result(buffer.toString()))
            ..onData = (() => buffer.add(new String.fromCharCodes(input.read())))
-           ..onError = (error) {
-        if(_onErrorCallback != null && !_isCanceled){
-          _onErrorCallback(error);
-        }
-        _stopHttpClient();
-      };
+           ..onError = (error)  => _error(error);
     } else {
-      _stopHttpClient();
+     _error('Bad http status ${httpResponse.statusCode}');
     }
   }  
+  
+  void _result(String content){
+    var response = _executor._userMapper.map(content);
+    if(_onResponseCallback != null && !_isCanceled){
+      _onResponseCallback(response);
+    }
+    _stopHttpClient();  
+  }
+  
+  void _error(error){
+    if(_onErrorCallback != null && !_isCanceled){
+      _onErrorCallback(error);
+    }
+    _stopHttpClient();    
+  } 
   
   void set onResponse(void callback(FollowersNumberResponse response)){
     _onResponseCallback = callback;
