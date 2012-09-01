@@ -21,14 +21,16 @@ class _FollowersNumberRequest implements FollowersNumberRequest {
   }
   
   _responseHandler(httpResponse){
-    if(httpResponse.statusCode == 200 && !_isCanceled){
-      var buffer = new StringBuffer();
-      InputStream input = httpResponse.inputStream;
-      input..onClosed = (() => _result(buffer.toString()))
-           ..onData = (() => buffer.add(new String.fromCharCodes(input.read())))
-           ..onError = (error)  => _error(error);
-    } else {
-     _error('Bad http status ${httpResponse.statusCode}');
+    if(!_isCanceled){    
+      if(httpResponse.statusCode == HttpStatus.OK){
+        var buffer = new StringBuffer();
+        InputStream input = httpResponse.inputStream;
+        input..onClosed = (() => _result(buffer.toString()))
+             ..onData = (() => buffer.add(new String.fromCharCodes(input.read())))
+             ..onError = (error)  => _error(error);
+      } else {
+       _error('Bad http status ${httpResponse.statusCode}');
+      }
     }
   }  
   

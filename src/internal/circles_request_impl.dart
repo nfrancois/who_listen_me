@@ -27,15 +27,17 @@ class _CirclesRequest implements CirclesRequest {
   }  
   
   _responseHandler(httpResponse){
-    if(httpResponse.statusCode == 200 && !_isCanceled){
-      var bytes = new List();
-      InputStream input = httpResponse.inputStream;
-      input..onClosed = (()  => _result(bytes.getRange(6, bytes.length-6)))
-           ..onData = (() => bytes.addAll(input.read()))
-           ..onError = (error)  => _error(error);
-    } else {
-     _error('Bad http status ${httpResponse.statusCode}');
-    }   
+    if(!_isCanceled){
+      if(httpResponse.statusCode == 200){
+        var bytes = new List();
+        InputStream input = httpResponse.inputStream;
+        input..onClosed = (()  => _result(bytes.getRange(6, bytes.length-6)))
+             ..onData = (() => bytes.addAll(input.read()))
+             ..onError = (error)  => _error(error);
+      } else {
+       _error('Bad http status ${httpResponse.statusCode}');
+      }   
+    }
   }
   
   void _result(List<int> bytes){
