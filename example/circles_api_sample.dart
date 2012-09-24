@@ -1,4 +1,4 @@
-#import("../who_listen_me.dart");
+#import("package:who_listen_me/who_listen_me.dart");
 
 /**
  * This sample list persons in our google plus page.
