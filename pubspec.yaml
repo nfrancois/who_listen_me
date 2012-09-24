@@ -1,3 +1,7 @@
+name: who_listen_me
+version: 0.2.0
+description: >
+ Who listen me is a small api to know you listen you on social networks. Supports Google+ and Twitter.
 dependencies:
   unittest:
     sdk: unittest
