@@ -29,7 +29,7 @@ main(){
 ## Twitter
 
 ```
-#import("../who_listen_me.dart");
+#import("package:who_listen_me/who_listen_me.dart");
 
 /**
  * This sample print information about you.
