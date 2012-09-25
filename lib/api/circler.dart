@@ -14,7 +14,7 @@ class Circler extends Hashable {
   
   bool operator==(other) {
     if (other == null) return false;
-    if (other === this) return true;
+    if (identical(other, this)) return true;
     return (other.googlePlusId == googlePlusId);
   }
   
