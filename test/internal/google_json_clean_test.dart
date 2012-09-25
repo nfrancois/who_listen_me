@@ -77,22 +77,22 @@ class GoogleJsonCleanerTest {
 
   _notCloseQuoteCharAfterEscape(){
     // Given
-    var incoming = @'"\"something in quotes in the quotes\""'.charCodes();
+    var incoming = r'"\"something in quotes in the quotes\""'.charCodes();
     // When
     var result = _cleaner.clean(incoming);
     // Then
     expect(result, isNotNull);
-    expect(result, equals(@'"\"something in quotes in the quotes\""'));
+    expect(result, equals(r'"\"something in quotes in the quotes\""'));
   }
 
   _special_char_in_quotes(){
     // Given
-    var incoming = @'"\u0026",,'.charCodes();
+    var incoming = r'"\u0026",,'.charCodes();
     // When
     var result = _cleaner.clean(incoming);
     // Then
     expect(result, isNotNull);
-    expect(result, equals(@'"\u0026",null,'));
+    expect(result, equals(r'"\u0026",null,'));
 
   }
 
