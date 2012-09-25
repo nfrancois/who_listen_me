@@ -2,7 +2,7 @@
  * Response to a FollowersRequest.
  * Give total followers numbers of a user.
  */ 
-class FollowersNumberResponse {
+class FollowersNumberResponse extends Hashable {
   
   String nickname;
   String name;

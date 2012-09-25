@@ -1,6 +1,6 @@
 class _CirclesRequest implements CirclesRequest {
   
-  static final _GOOGLE_PLUS_ID_TOKEN_URL = @"$googlePlusId";
+  static final _GOOGLE_PLUS_ID_TOKEN_URL = r"$googlePlusId";
   static final _INCOMING_PERSON_URL = "https://plus.google.com/_/socialgraph/lookup/incoming/?o=%5Bnull%2Cnull%2C%22$_GOOGLE_PLUS_ID_TOKEN_URL%22%5D&n=1000";
   
   static final String _HTTPS_PROXY = "http://nfrproxy.appspot.com/proxy?url=";

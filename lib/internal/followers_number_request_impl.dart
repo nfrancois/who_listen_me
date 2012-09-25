@@ -1,8 +1,8 @@
 
 class _FollowersNumberRequest implements FollowersNumberRequest {
   
-  static final String USERS_API_BY_NICKNAME = @"http://api.twitter.com/1/users/show.json?screen_name=${nickname}";
-  static final String NICKNAME_FIELD = @"${nickname}";
+  static final String USERS_API_BY_NICKNAME = r"http://api.twitter.com/1/users/show.json?screen_name=${nickname}";
+  static final String NICKNAME_FIELD = r"${nickname}";
       
   final FollowersRequestExecutor _executor;
   
