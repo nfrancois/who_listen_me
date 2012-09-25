@@ -1,8 +1,8 @@
 /**
  * Clean the steam to be jsonable
- */ 
+ */
 class _GoogleJsonCleaner {
-  
+
   static final List<int> NULL_VALUE = const [110, 117, 108, 108];
   static final int COMMA = 44;
   static final int OPEN_BRACE = 91;
@@ -11,7 +11,7 @@ class _GoogleJsonCleaner {
   static final int SPACE = 32;
   static final int ESCAPE = 92;
   static final int QUOTE = 34;
-  
+
   String clean(List<int> bytes){
     var isInStringValue = false;
     var isInEscape = false;
@@ -32,7 +32,7 @@ class _GoogleJsonCleaner {
           buffer.addAll(NULL_VALUE);
         }
         buffer.add(currentChar);
-        
+
         lastChar = currentChar;
       } else if(isInStringValue) {
         if(lastChar == ESCAPE){
@@ -44,17 +44,17 @@ class _GoogleJsonCleaner {
     });
     return new String.fromCharCodes(buffer);
   }
-  
+
   bool _betweenTwoComma(first, second){
-    return first == COMMA && second == COMMA;   
+    return first == COMMA && second == COMMA;
   }
-  
+
   bool _betweenCommaAndBrace(int first, second){
-    return first == COMMA && second == CLOSE_BRACE;    
+    return first == COMMA && second == CLOSE_BRACE;
   }
-  
+
   bool _betweenBraceAndComma(first, second){
     return first == OPEN_BRACE && second == COMMA;
-  }  
-  
+  }
+
 }

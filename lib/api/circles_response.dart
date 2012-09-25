@@ -3,13 +3,13 @@
  * Contains a list of visible circlers and a total circlers number
  */
 class CirclesResponse extends Hashable {
-  
+
   int totalCirclers;
   List<Circler> visiblesCirclers;
-  
+
   CirclesResponse(this.totalCirclers, this.visiblesCirclers);
-  
-  
+
+
   bool operator==(other) {
     if (other == null) return false;
     if (identical(other, this)) return true;
@@ -21,7 +21,7 @@ class CirclesResponse extends Hashable {
     }
     return true;
   }
-  
+
  int hashCode() {
     int result = 5;
     result = 3 * result + totalCirclers.hashCode();
@@ -29,6 +29,6 @@ class CirclesResponse extends Hashable {
       result = 3 * result + circler.hashCode();
     });
     return result;
-  } 
- 
+  }
+
 }

@@ -1,40 +1,40 @@
 /**
- * Test for GoogleJsonCleaner. 
+ * Test for GoogleJsonCleaner.
  */
 class GoogleJsonCleanerTest {
-  
-  
+
+
   _GoogleJsonCleaner _cleaner;
-  
+
   _shouldANullBeetweenComma(){
     // Given
     var incoming = ',,,'.charCodes();
     // When
     var result = _cleaner.clean(incoming);
     // Then
-    expect(result, isNotNull);    
-    expect(result, equals(',null,null,'));    
+    expect(result, isNotNull);
+    expect(result, equals(',null,null,'));
   }
-  
+
   _shouldAddNullValueBetweenBraceAnComma(){
     // Given
     var incoming = '[,'.charCodes();
     // When
     var result = _cleaner.clean(incoming);
     // Then
-    expect(result, equals('[null,'));       
+    expect(result, equals('[null,'));
   }
-  
+
   _shouldAddNullValueBetweenCommaAndBrace(){
     // Given
     var incoming = ',]'.charCodes();;
     // When
     var result = _cleaner.clean(incoming);
     // Then
-    expect(result, isNotNull);     
-    expect(result, equals(',null]'));       
-  }  
-  
+    expect(result, isNotNull);
+    expect(result, equals(',null]'));
+  }
+
   _ignoreNewLine(){
     // Given
     var incoming = 'something\n'.charCodes();;
@@ -42,9 +42,9 @@ class GoogleJsonCleanerTest {
     var result = _cleaner.clean(incoming);
     // Then
     expect(result, isNotNull);
-    expect(result, equals('something'));    
+    expect(result, equals('something'));
   }
-  
+
   _ignoreSpace(){
     // Given
     var incoming = ',something ,'.charCodes();;
@@ -52,9 +52,9 @@ class GoogleJsonCleanerTest {
     var result = _cleaner.clean(incoming);
     // Then
     expect(result, isNotNull);
-    expect(result, equals(',something,'));    
+    expect(result, equals(',something,'));
   }
-  
+
   _notIgnoreSpaceInQuote(){
     // Given
     var incoming = '"something "'.charCodes();;
@@ -62,9 +62,9 @@ class GoogleJsonCleanerTest {
     var result = _cleaner.clean(incoming);
     // Then
     expect(result, isNotNull);
-    expect(result, equals('"something "'));    
+    expect(result, equals('"something "'));
   }
-  
+
   _notIgnoreNewLineInQuote(){
     // Given
     var incoming = '"something\n"'.charCodes();;
@@ -72,9 +72,9 @@ class GoogleJsonCleanerTest {
     var result = _cleaner.clean(incoming);
     // Then
     expect(result, isNotNull);
-    expect(result, equals('"something\n"'));    
-  }  
-  
+    expect(result, equals('"something\n"'));
+  }
+
   _notCloseQuoteCharAfterEscape(){
     // Given
     var incoming = @'"\"something in quotes in the quotes\""'.charCodes();
@@ -83,8 +83,8 @@ class GoogleJsonCleanerTest {
     // Then
     expect(result, isNotNull);
     expect(result, equals(@'"\"something in quotes in the quotes\""'));
-  }  
-  
+  }
+
   _special_char_in_quotes(){
     // Given
     var incoming = @'"\u0026",,'.charCodes();
@@ -92,10 +92,10 @@ class GoogleJsonCleanerTest {
     var result = _cleaner.clean(incoming);
     // Then
     expect(result, isNotNull);
-    expect(result, equals(@'"\u0026",null,')); 
-    
+    expect(result, equals(@'"\u0026",null,'));
+
   }
- 
+
   _completeResponse(){
       // Given
       var incomingStream = (new File("test/resources/incoming.txt")).readAsBytesSync();
@@ -104,10 +104,10 @@ class GoogleJsonCleanerTest {
       var result = _cleaner.clean(incoming);
       // Then
       expect(result, isNotNull);
-      var expected = (new File("test/resources/incoming_clean.txt")).readAsTextSync();  
+      var expected = (new File("test/resources/incoming_clean.txt")).readAsTextSync();
       expect(result, equals(expected));
-  }  
-  
+  }
+
   runTest(){
     setUp(() => _cleaner = new _GoogleJsonCleaner());
     test('add null value between twos commas', () => _shouldANullBeetweenComma());
@@ -121,9 +121,9 @@ class GoogleJsonCleanerTest {
     test('special char in quotes', () => _special_char_in_quotes());
     test('complete response test', () => _completeResponse());
   }
-  
+
   String description(){
     return 'Google JSon cleaner test';
   }
-  
+
 }

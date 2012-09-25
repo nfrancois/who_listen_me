@@ -17,7 +17,7 @@
 #source("../lib/internal/users_mapper.dart");
 #source("../lib/internal/circles_request_impl.dart");
 #source("../lib/internal/circles_request_executor.dart");
-// Test Classes 
+// Test Classes
 #source("api/circler_test.dart");
 #source("api/circles_response_test.dart");
 #source("api/circles_api_test.dart");
@@ -30,23 +30,23 @@
  * Call all tests.
  */
 class TestSuite {
-  
+
   /**
    * All test
    */
-  final List<_Testable> _tests;  
-  
+  final List<_Testable> _tests;
+
   TestSuite() : _tests = [ new GoogleJsonCleanerTest(), new CirclerTest(), new CirclerMapperTest(), //
                            new CirclesApiTest(), new CirclesResponseTest(), new FollowersNumberResponseTest(), //
                            new FollowersMapperTest(), new CirclesRequestImplTest() ];
-  
+
   /**
    * Run all tests
    */
   run(){
     _tests.forEach((_test) => group('${_test.description()} -', _test.runTest)) ;
   }
-  
+
 }
 
 main() {
@@ -57,11 +57,11 @@ main() {
  * Calling test interface.
  */
 interface _Testable {
-  
+
   runTest();
-  
+
   String description();
-  
+
 }
 
 

@@ -2,7 +2,7 @@
 
 /**
  * This sample list persons in our google plus page.
- */ 
+ */
 main(){
   var circles = new CirclesApi();
   var request = circles.whoCircleMe('115816334172157652403');
