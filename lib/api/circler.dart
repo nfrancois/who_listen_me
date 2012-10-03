@@ -1,7 +1,7 @@
 /**
  * Objet for Cicler.
  */
-class Circler extends Hashable {
+class Circler {
 
   String googlePlusId;
   String name;
