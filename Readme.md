@@ -8,7 +8,7 @@ Who listen me is a small api to know you listen you on social networks.
 Who has added you in their circles ?
 
 ```
-#import("package:who_listen_me/who_listen_me.dart");
+import "package:who_listen_me/who_listen_me.dart";
 
 /**
  * This sample list persons in our google plus page.
@@ -29,7 +29,7 @@ main(){
 ## Twitter
 
 ```
-#import("package:who_listen_me/who_listen_me.dart");
+import "package:who_listen_me/who_listen_me.dart";
 
 /**
  * This sample print information about you.

@@ -1,20 +1,20 @@
-#library("who_listen_me");
+library who_listen_me;
 
-#import("dart:io");
-#import("dart:uri");
-#import("dart:json");
+import "dart:io";
+import "dart:uri";
+import "dart:json";
 
-#source("api/circles_api.dart");
-#source("api/circler.dart");
-#source("api/circles_request.dart");
-#source("api/circles_response.dart");
-#source("api/followers_api.dart");
-#source("api/followers_number_request.dart");
-#source("api/followers_number_response.dart");
-#source("internal/google_json_cleaner.dart");
-#source("internal/circler_mapper.dart");
-#source("internal/circles_request_executor.dart");
-#source("internal/circles_request_impl.dart");
-#source("internal/users_mapper.dart");
-#source("internal/followers_request_executor.dart");
-#source("internal/followers_number_request_impl.dart");
+part "api/circles_api.dart";
+part "api/circler.dart";
+part "api/circles_request.dart";
+part "api/circles_response.dart";
+part "api/followers_api.dart";
+part "api/followers_number_request.dart";
+part "api/followers_number_response.dart";
+part "internal/google_json_cleaner.dart";
+part "internal/circler_mapper.dart";
+part "internal/circles_request_executor.dart";
+part "internal/circles_request_impl.dart";
+part "internal/users_mapper.dart";
+part "internal/followers_request_executor.dart";
+part "internal/followers_number_request_impl.dart";
