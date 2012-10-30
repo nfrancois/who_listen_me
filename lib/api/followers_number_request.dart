@@ -1,7 +1,7 @@
 /**
  * A request on twitter's follower numbers.
  */
-interface FollowersNumberRequest {
+abstract class FollowersNumberRequest {
 
   /**
    * When response is received.

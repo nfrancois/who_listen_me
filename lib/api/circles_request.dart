@@ -1,7 +1,7 @@
 /**
  * A request on circles.
  */
-interface CirclesRequest {
+abstract class CirclesRequest {
 
   /**
    * When response is received.

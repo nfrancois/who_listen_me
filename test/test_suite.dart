@@ -56,7 +56,7 @@ main() {
 /**
  * Calling test interface.
  */
-interface _Testable {
+abstract class _Testable {
 
   runTest();
 
