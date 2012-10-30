@@ -18,10 +18,6 @@ class Circler {
     return (other.googlePlusId == googlePlusId);
   }
 
- int hashCode() {
-    int result = 17;
-    result = 37 * result + googlePlusId.hashCode();
-    return result;
-  }
+ int get hashCode => 15 * googlePlusId.hashCode + 15;
 
 }

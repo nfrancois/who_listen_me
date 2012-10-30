@@ -25,7 +25,7 @@ class CirclesResponseTest {
 
   _sameHasCode(){
     // Then
-    expect(_first.hashCode() == _another.hashCode());
+    expect(_first.hashCode == _another.hashCode);
   }
 
   _notEquals(){
@@ -37,9 +37,9 @@ class CirclesResponseTest {
 
   _not_sameHasCode(){
     // Then
-    expect(_first.hashCode() != _second.hashCode());
-    expect(_second.hashCode != _third.hashCode());
-    expect(_first.hashCode() != _third.hashCode());
+    expect(_first.hashCode != _second.hashCode);
+    expect(_second.hashCode != _third.hashCode);
+    expect(_first.hashCode != _third.hashCode);
   }
 
   _equalsToItself(){

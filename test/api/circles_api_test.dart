@@ -39,7 +39,7 @@ class HttpResponseMock {
   HttpResponseMock(this.statusCode, File file){
     var input = file.readAsTextSync();
     var inputStream = new ListInputStream();
-    inputStream.write(input.charCodes());
+    inputStream.write(input.charCodes);
   }
 
 

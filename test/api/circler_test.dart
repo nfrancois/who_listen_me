@@ -21,7 +21,7 @@ class CirclerTest {
 
   _sameGooglePlusId_sameHasCode(){
     // Then
-    expect(_first.hashCode() == _another.hashCode());
+    expect(_first.hashCode == _another.hashCode);
   }
 
   _differentGooglePlusId_NotEquals(){
@@ -31,7 +31,7 @@ class CirclerTest {
 
   _differentGooglePlusId_Not_sameHasCode(){
     // Then
-    expect(_first.hashCode() != _second.hashCode());
+    expect(_first.hashCode != _second.hashCode);
   }
 
   _equalsToItself(){

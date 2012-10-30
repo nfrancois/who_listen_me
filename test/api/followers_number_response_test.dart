@@ -31,13 +31,13 @@ class FollowersNumberResponseTest {
   }
 
   _same_hashcode(){
-    equals(_first.hashCode() == _another.hashCode());
+    equals(_first.hashCode == _another.hashCode);
   }
 
   _not_same_hashcode(){
-    equals(_second.hashCode() == _first.hashCode());
-    equals(_third.hashCode() == _first.hashCode());
-    equals(_second.hashCode() == _third.hashCode());
+    equals(_second.hashCode == _first.hashCode);
+    equals(_third.hashCode == _first.hashCode);
+    equals(_second.hashCode == _third.hashCode);
   }
 
   runTest(){

@@ -8,7 +8,7 @@ class GoogleJsonCleanerTest {
 
   _shouldANullBeetweenComma(){
     // Given
-    var incoming = ',,,'.charCodes();
+    var incoming = ',,,'.charCodes;
     // When
     var result = _cleaner.clean(incoming);
     // Then
@@ -18,7 +18,7 @@ class GoogleJsonCleanerTest {
 
   _shouldAddNullValueBetweenBraceAnComma(){
     // Given
-    var incoming = '[,'.charCodes();
+    var incoming = '[,'.charCodes;
     // When
     var result = _cleaner.clean(incoming);
     // Then
@@ -27,7 +27,7 @@ class GoogleJsonCleanerTest {
 
   _shouldAddNullValueBetweenCommaAndBrace(){
     // Given
-    var incoming = ',]'.charCodes();;
+    var incoming = ',]'.charCodes;
     // When
     var result = _cleaner.clean(incoming);
     // Then
@@ -37,7 +37,7 @@ class GoogleJsonCleanerTest {
 
   _ignoreNewLine(){
     // Given
-    var incoming = 'something\n'.charCodes();;
+    var incoming = 'something\n'.charCodes;
     // When
     var result = _cleaner.clean(incoming);
     // Then
@@ -47,7 +47,7 @@ class GoogleJsonCleanerTest {
 
   _ignoreSpace(){
     // Given
-    var incoming = ',something ,'.charCodes();;
+    var incoming = ',something ,'.charCodes;
     // When
     var result = _cleaner.clean(incoming);
     // Then
@@ -57,7 +57,7 @@ class GoogleJsonCleanerTest {
 
   _notIgnoreSpaceInQuote(){
     // Given
-    var incoming = '"something "'.charCodes();;
+    var incoming = '"something "'.charCodes;
     // When
     var result = _cleaner.clean(incoming);
     // Then
@@ -67,7 +67,7 @@ class GoogleJsonCleanerTest {
 
   _notIgnoreNewLineInQuote(){
     // Given
-    var incoming = '"something\n"'.charCodes();;
+    var incoming = '"something\n"'.charCodes;
     // When
     var result = _cleaner.clean(incoming);
     // Then
@@ -77,7 +77,7 @@ class GoogleJsonCleanerTest {
 
   _notCloseQuoteCharAfterEscape(){
     // Given
-    var incoming = r'"\"something in quotes in the quotes\""'.charCodes();
+    var incoming = r'"\"something in quotes in the quotes\""'.charCodes;
     // When
     var result = _cleaner.clean(incoming);
     // Then
@@ -87,7 +87,7 @@ class GoogleJsonCleanerTest {
 
   _special_char_in_quotes(){
     // Given
-    var incoming = r'"\u0026",,'.charCodes();
+    var incoming = r'"\u0026",,'.charCodes;
     // When
     var result = _cleaner.clean(incoming);
     // Then
