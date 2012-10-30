@@ -18,9 +18,9 @@ class FollowersNumberResponse {
   }
 
   int get hashCode() {
-    int result = 7;
-    result = 5 * result + id.hashCode;
-    result = 5 * result + totalFollowers.hashCode;
+    int result = 3;
+    result = 7 * result + id.hashCode;
+    result = 7 * result + totalFollowers.hashCode;
     return result;
   }
 

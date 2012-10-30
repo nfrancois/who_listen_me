@@ -24,9 +24,9 @@ class CirclesResponse {
 
  int get hashCode {
     int result = 5;
-    result = 3 * result + totalCirclers.hashCode;
+    result = 7 * result + totalCirclers.hashCode;
     visiblesCirclers.forEach((circler) {
-      result = 3 * result + circler.hashCode;
+      result = 7 * result + circler.hashCode;
     });
     return result;
   }
