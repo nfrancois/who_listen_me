@@ -17,7 +17,7 @@ class FollowersNumberResponse {
     return (other.id == id &&  other.totalFollowers == totalFollowers);
   }
 
-  int get hashCode() {
+  int get hashCode {
     int result = 3;
     result = 7 * result + id.hashCode;
     result = 7 * result + totalFollowers.hashCode;
