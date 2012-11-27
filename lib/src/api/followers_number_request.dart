@@ -1,12 +1,14 @@
+part of who_listen_me;
+
 /**
- * A request on circles.
+ * A request on twitter's follower numbers.
  */
-abstract class CirclesRequest {
+abstract class FollowersNumberRequest {
 
   /**
    * When response is received.
    */
-  void set onResponse(void callback(CirclesResponse response));
+  void set onResponse(void callback(FollowersNumberResponse response));
 
   /**
    * Sometimes errors happens.

@@ -5,5 +5,4 @@ description: >
 author: Nicolas Francois @nicofrancois
 homepage: https://github.com/dartlangfr/who_listen_me
 dependencies:
-  unittest:
-    sdk: unittest
+  unittest: {sdk: unittest}

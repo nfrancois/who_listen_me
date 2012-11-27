@@ -1,3 +1,5 @@
+part of who_listen_me;
+
 /**
  * Clean the steam to be jsonable
  */

@@ -1,3 +1,5 @@
+part of who_listen_me;
+
 /**
  * Map users response to FollowersNumberResponse
  */
