@@ -7,16 +7,16 @@ import "dart:uri";
 import 'package:unittest/unittest.dart';
 
 // Tested classes
-part "../lib/api/circles_api.dart";
-part "../lib/api/circler.dart";
-part "../lib/api/circles_response.dart";
-part "../lib/api/circles_request.dart";
-part "../lib/api/followers_number_response.dart";
-part "../lib/internal/google_json_cleaner.dart";
-part "../lib/internal/circler_mapper.dart";
-part "../lib/internal/users_mapper.dart";
-part "../lib/internal/circles_request_impl.dart";
-part "../lib/internal/circles_request_executor.dart";
+part "../lib/src/api/circles_api.dart";
+part "../lib/src/api/circler.dart";
+part "../lib/src/api/circles_response.dart";
+part "../lib/src/api/circles_request.dart";
+part "../lib/src/api/followers_number_response.dart";
+part "../lib/src/internal/google_json_cleaner.dart";
+part "../lib/src/internal/circler_mapper.dart";
+part "../lib/src/internal/users_mapper.dart";
+part "../lib/src/internal/circles_request_impl.dart";
+part "../lib/src/internal/circles_request_executor.dart";
 // Test Classes
 part "api/circler_test.dart";
 part "api/circles_response_test.dart";
