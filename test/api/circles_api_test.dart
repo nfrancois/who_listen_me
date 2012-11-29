@@ -1,3 +1,5 @@
+part of who_listen_me_test;
+
 /**
  * Test for CirclesApi.
  */
@@ -37,7 +39,7 @@ class HttpResponseMock {
   var onError;
 
   HttpResponseMock(this.statusCode, File file){
-    var input = file.readAsTextSync();
+    var input = file.readAsStringSync();
     var inputStream = new ListInputStream();
     inputStream.write(input.charCodes);
   }

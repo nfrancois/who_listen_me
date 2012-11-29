@@ -1,3 +1,5 @@
+part of who_listen_me_test;
+
 /**
  * Test for CirclesReponse
  */
@@ -15,36 +17,36 @@ class CirclesResponseTest {
 
   _not_equals_to_null(){
     // Then
-    expect(_first != null);
+    expect(_first, isNotNull);
   }
 
   _are_equals(){
     // Then
-    expect(_first == _another);
+    expect(_first, equals(_another));
   }
 
   _sameHasCode(){
     // Then
-    expect(_first.hashCode == _another.hashCode);
+    expect(_first.hashCode, equals(_another.hashCode));
   }
 
   _notEquals(){
     // Then
-    expect(_first != _second);// Different total number but same circlers
-    expect(_second != _third);// Same total number but different circlers
-    expect(_first != _third);// All is different
+    expect(_first, isNot(equals(_second)));// Different total number but same circlers
+    expect(_second, isNot(equals(_third)));// Same total number but different circlers
+    expect(_first, isNot(equals(_third)));// All is different
   }
 
   _not_sameHasCode(){
     // Then
-    expect(_first.hashCode != _second.hashCode);
-    expect(_second.hashCode != _third.hashCode);
-    expect(_first.hashCode != _third.hashCode);
+    expect(_first.hashCode, isNot(equals(_second.hashCode)));
+    expect(_second.hashCode, isNot(equals(_third.hashCode)));
+    expect(_first.hashCode, isNot(equals(_third.hashCode)));
   }
 
   _equalsToItself(){
     // Then
-    expect(_first == _first);
+    expect(_first, equals(_first));
   }
 
   runTest(){

@@ -1,3 +1,5 @@
+part of who_listen_me_test;
+
 /**
  * Test for Circler.
  */
@@ -11,32 +13,32 @@ class CirclerTest {
 
   _not_equals_to_null(){
     // Then
-    expect(_first != null);
+    expect(_first, isNotNull);
   }
 
   _sameGooglePlusId_equals(){
     // Then
-    expect(_first == _another);
+    expect(_first, equals(_another));
   }
 
   _sameGooglePlusId_sameHasCode(){
     // Then
-    expect(_first.hashCode == _another.hashCode);
+    expect(_first.hashCode, equals(_another.hashCode));
   }
 
   _differentGooglePlusId_NotEquals(){
     // Then
-    expect(_first != _second);
+    expect(_first, isNot(equals(_second)));
   }
 
   _differentGooglePlusId_Not_sameHasCode(){
     // Then
-    expect(_first.hashCode != _second.hashCode);
+    expect(_first.hashCode, isNot(equals(_second.hashCode)));
   }
 
   _equalsToItself(){
     // Then
-    expect(_first == _first);
+    expect(_first, equals(_first));
   }
 
   runTest(){

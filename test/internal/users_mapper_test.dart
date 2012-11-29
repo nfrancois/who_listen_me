@@ -1,3 +1,5 @@
+part of who_listen_me_test;
+
 /**
  * Test for CirclerMapper
  */
@@ -41,7 +43,7 @@ class CirclerMapperTest {
 
   _mapFromIncomingFile(){
     // Given
-    var incoming = (new File("test/resources/incoming_clean.txt")).readAsTextSync();
+    var incoming = (new File("test/resources/incoming_clean.txt")).readAsStringSync();
     // When
     var response = _circlerMapper.map(incoming);
     // Then

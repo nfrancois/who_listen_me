@@ -1,3 +1,5 @@
+part of who_listen_me_test;
+
 /**
  * Test of FollowersMapper
  */
@@ -7,7 +9,7 @@ class FollowersMapperTest {
 
   _complete_response(){
     // Given
-    var users = (new File("test/resources/users.json")).readAsTextSync();
+    var users = (new File("test/resources/users.json")).readAsStringSync();
     // When
     var result = _mapper.map(users);
     // Then

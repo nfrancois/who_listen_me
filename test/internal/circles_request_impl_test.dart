@@ -1,3 +1,5 @@
+part of who_listen_me_test;
+
 /**
  * Test for CirlesRequestImplTest.
  */
@@ -14,7 +16,7 @@ class CirclesRequestImplTest {
 
     // Then
     _executor._httpClient.getLogs(callsTo('shutdown')).verify(happenedOnce);
-    expect(_request._isCanceled);
+    expect(_request._isCanceled, isTrue);
   }
 
   _httpCall_failed(){
@@ -29,7 +31,7 @@ class CirclesRequestImplTest {
 
     // Then
     _executor._httpClient.getLogs(callsTo('shutdown')).verify(happenedOnce);
-    expect(onErrorIsCall);
+    expect(onErrorIsCall, isTrue);
   }
 
   runTest(){

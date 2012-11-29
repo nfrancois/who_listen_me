@@ -1,3 +1,5 @@
+part of who_listen_me_test;
+
 /**
  * Test for GoogleJsonCleaner.
  */
@@ -104,7 +106,7 @@ class GoogleJsonCleanerTest {
       var result = _cleaner.clean(incoming);
       // Then
       expect(result, isNotNull);
-      var expected = (new File("test/resources/incoming_clean.txt")).readAsTextSync();
+      var expected = (new File("test/resources/incoming_clean.txt")).readAsStringSync();
       expect(result, equals(expected));
   }
 

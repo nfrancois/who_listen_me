@@ -1,10 +1,12 @@
-library circles_api_extension_tests;
+library who_listen_me_test;
 
 import "dart:json";
 import "dart:io";
 import "dart:uri";
 
-import 'package:unittest/unittest.dart';
+import "packages/unittest/unittest.dart";
+import "package:unittest/mock.dart";
+
 
 // Tested classes
 part "../lib/src/api/circles_api.dart";
